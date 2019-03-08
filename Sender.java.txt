@@ -1,0 +1,18 @@
+// connectionless communication
+
+import java.net.*;
+import java.io.*;
+
+class Sender
+{
+  public static void main(String args[]) throws Exception
+  {
+    InetAddress ip=InetAddress.getByName("user-PC");
+    Socket s=new Socket(ip.getHostAddress(),1234);
+    DataOutputStream dos=new DataOutputStream(s.getOutputStream());
+    String msg="hello";
+    dos.writeUTF(msg);
+    System.out.println("data is sent");
+  }
+}
+

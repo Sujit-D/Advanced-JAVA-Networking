@@ -1,0 +1,16 @@
+// reciever class/ServerSocket  (sink)
+
+import java.net.*;
+import java.io.*;
+
+class Reciever
+{
+  public static void main(String args[]) throws Exception
+  {
+    ServerSocket ss=new ServerSocket(1234);
+    Socket s=ss.accept();
+    DataInputStream dis=new DataInputStream(s.getInputStream());
+    String x=dis.readUTF();
+    System.out.println("Sender said "+x);
+  }
+}

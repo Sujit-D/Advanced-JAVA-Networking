@@ -1,0 +1,29 @@
+// connection orineted communication (Reciever program)
+import java.net.*;
+import java.io.*;
+
+class Reciever2
+{
+  public static void main(String args[]) throws Exception
+  {
+    ServerSocket ss=new ServerSocket(1234);
+    Socket s=ss.accept();
+    DataOutputStream dos=new DataOutputStream(s.getOutputStream());
+    DataInputStream dis=new DataInputStream(s.getInputStream());
+
+    String msg1="", msg2="";
+    InputStreamReader isr=new InputStreamReader(System.in);
+    BufferedReader br=new BufferedReader(isr);
+    System.out.println("Start chatting");
+
+    while(!msg1.equals("STOP") && !msg2.equals("STOP"))
+    {
+      msg1=dis.readUTF();      
+      System.out.println(msg1);
+      msg2=br.readLine();
+      dos.writeUTF(msg2);
+    }
+    System.out.println("Chatting Closed...");
+  }
+}
+
